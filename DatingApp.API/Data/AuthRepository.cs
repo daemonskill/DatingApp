@@ -23,6 +23,7 @@ namespace DatingApp.API.Data
 
             if (!VerifiPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
+                 //Console.Write(password);
                 return null;
             }
 
@@ -72,8 +73,8 @@ namespace DatingApp.API.Data
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                passwordHash = hmac.Key;     
-                passwordSalt = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));  
+                passwordSalt = hmac.Key;     
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));  
             }
         }
     }
