@@ -34,17 +34,20 @@ namespace DatingApp.API.Controllers
              if (await _repo.UserExists(userForRegisterDtos.Username))
              return BadRequest ("User already Exist");
 
-             var UserToCreate = new User{
+             var userToCreate = new User{
                  Username=userForRegisterDtos.Username
              };
 
-             await _repo.Register(UserToCreate, userForRegisterDtos.Password);
+             var createdUser = await _repo.Register(userToCreate, userForRegisterDtos.Password);
+             Console.Write(userToCreate.Username);
              return StatusCode(201);
+             
          }
          [HttpPost("login")]
          public async Task<IActionResult> Login(UserForLoginDtos userForLoginDtos)
             {
                 var userFromrepo = await _repo.Login(userForLoginDtos.Username.ToLower(), userForLoginDtos.Password);
+
                 if(userFromrepo==null)
                 return Unauthorized();
                 
@@ -54,7 +57,8 @@ namespace DatingApp.API.Controllers
                     new Claim(ClaimTypes.Name, userFromrepo.Username )
                 };
 
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+                var key = new SymmetricSecurityKey(Encoding.UTF8.
+                GetBytes(_config.GetSection("AppSettings:Token").Value));
 
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
