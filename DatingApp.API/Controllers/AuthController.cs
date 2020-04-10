@@ -33,5 +33,17 @@ namespace DatingApp.API.Controllers
              await _repo.Register(UserToCreate, userForRegisterDtos.Password);
              return StatusCode(201);
          }
+         [HttpPost("login")]
+         public async Task<IActionResult> Login(UserForLoginDtos userForLoginDtos)
+            {
+                var userFromrepo = await _repo.Login(userForLoginDtos.Username, userForLoginDtos.Password);
+                if(userFromrepo==null)
+                return unauthorized();
+                
+                var claims = new[]
+                {
+                    new claims(claimst )
+                }
+            }
     }
 }
