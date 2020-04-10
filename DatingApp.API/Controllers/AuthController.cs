@@ -44,7 +44,7 @@ namespace DatingApp.API.Controllers
          [HttpPost("login")]
          public async Task<IActionResult> Login(UserForLoginDtos userForLoginDtos)
             {
-                var userFromrepo = await _repo.Login(userForLoginDtos.Username, userForLoginDtos.Password);
+                var userFromrepo = await _repo.Login(userForLoginDtos.Username.ToLower(), userForLoginDtos.Password);
                 if(userFromrepo==null)
                 return Unauthorized();
                 
@@ -56,7 +56,7 @@ namespace DatingApp.API.Controllers
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
-                var creds = new SigningCredentials(key, SecurityAlgorithms.Aes128CbcHmacSha256);
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
