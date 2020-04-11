@@ -34,9 +34,8 @@ namespace DatingApp.API
             services.AddControllers();
             services.AddCors();
             services.AddScoped<IAuthRepository , AuthRepository>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-
-            .AddJwtBearer( options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+                 options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -63,6 +62,8 @@ namespace DatingApp.API
             app.UseRouting();
 
              app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+             
+             app.UseAuthentication();
 
             app.UseAuthorization();
 
