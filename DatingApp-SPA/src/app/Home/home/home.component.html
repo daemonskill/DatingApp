@@ -1,0 +1,21 @@
+<div  class="container mt-5">
+<div *ngIf="!registerMode" style="text-align: center">
+  <h1>Find your match</h1>
+  <p class="lead">Come on in to view yours matches... all  you need to do is sing up!</p>
+  <div class ="text-center">
+    <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Register</button>
+    <button class="btn btn-primary btn-lg">Learn More..</button>
+  </div>  
+</div>
+   <!-- card.// -->
+  <div *ngIf="registerMode" class="container">
+    <div class=" row justify-content-center">
+      <div class="col-4">
+             <!--[valuesFromHome]="values" ------Oner debajo para insertar droplist--> 
+<app-register                                     (cancelRegister) = "(cancelRegisterMode($event))" ></app-register>
+      </div>      
+    </div>
+  </div> 
+</div>
+
+  
