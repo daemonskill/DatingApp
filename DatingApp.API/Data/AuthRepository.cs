@@ -18,14 +18,15 @@ namespace DatingApp.API.Data
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Username==username);
             
+            //Console.Write(username);
             if (user==null)
             return null;
 
             if (!VerifiPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            {
-                 //Console.Write(password);
+            {                
                 return null;
-            }
+            } 
+            //Console.Write(password);
 
             return user;
 
