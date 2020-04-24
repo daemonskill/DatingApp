@@ -48,8 +48,8 @@ namespace DatingApp.API.Controllers
             {
                //Console.Write(userForLoginDtos.Password);
                //Console.Write(userForLoginDtos.Username);
-                var userFromrepo = await _repo.Login(userForLoginDtos.Username.ToLower(), userForLoginDtos.Password);
-                
+
+                var userFromrepo = await _repo.Login(userForLoginDtos.Username.ToLower(), userForLoginDtos.Password);                
 
                 if(userFromrepo==null)
                 return Unauthorized();
