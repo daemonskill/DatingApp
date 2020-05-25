@@ -1,0 +1,21 @@
+.card-body{
+    padding: 0 25%;
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.img-thumbnail{
+    margin: 25px;
+    width: 85%;
+    height: 85%;
+}
+.card-footer{
+background-color: #fff;
+border-top: none;
+}
+.alertify-info{
+    background-color: rgb(233, 84, 32);
+}
+
+
+    

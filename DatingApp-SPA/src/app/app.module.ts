@@ -26,6 +26,9 @@ import { MemberDetailComponent } from './Members/Member-Detail/Member-Detail.com
 import { TabsModule } from 'ngx-bootstrap/Tabs';
 import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { MemberlistResolver } from './_resolver/member-list.resolver copy';
+import { MemberEditComponent } from './Members/Member-Edit/member-edit.component';
+import { MemberEditResolver } from './_resolver/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 
 
@@ -50,7 +53,8 @@ return localStorage.getItem('token');
       MessagesComponent,
       OthersComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
@@ -75,7 +79,9 @@ return localStorage.getItem('token');
       ErrorInterceptorProvider,
       AuthService,
       MemberDetailResolver,
-      MemberlistResolver
+      MemberlistResolver,
+      MemberEditResolver,
+      PreventUnsavedChanges
    ],
    bootstrap: [
       AppComponent
